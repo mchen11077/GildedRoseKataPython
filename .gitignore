@@ -1,0 +1,26 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ignore virtual environment
+venv/
+.env/
+.venv/
+
+# ignore all logs
+*.log
+
+
+# ignore PyCharm files
+.idea/
+
+# ignore VS Code files
+.vscode/
+
+# ignore MacOS files
+.DS_Store
+
+# ignore environment variables
+.env
+*.env
