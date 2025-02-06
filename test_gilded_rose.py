@@ -22,6 +22,33 @@ class GildedRoseTest(unittest.TestCase):
         all_items = gilded_rose.get_items()
         self.assertEquals(["Sulfuras"], all_items)
 
+    # logic errors
+    def test_aged_brie_max_quality(self):
+        items = [Item("Aged Brie", 10, 50)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEqual(gilded_rose.items[0].quality, 49)
+
+    def test_update_quality_aged_brie(self):
+        items = [Item("Aged Brie", 5, 10)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEqual(9, items[0].quality)
+
+    def test_backstage_passes_drop_to_zero(self):
+        items = [Item("Backstage passes to a TAFKAL80ETC concert", 0, 20)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEqual(gilded_rose.items[0].quality, 21)
+
+    # syntax error
+    def test_add_items(self):
+        gilded_rose = GildedRose([])
+        gilded_rose.add_item("Edge Case Item", -1, 51)
+        self.assertEqual(len(gilded_rose.items), 1)
+        self.assertEqual(gilded_rose.items[0].name, "Edge Case Item")
+        self.assertEqual(gilded_rose.items[0].sell_in, -1)
+        self.assertEqual(gilded_rose.items[0].quality, 51)
 
 
 if __name__ == '__main__':
