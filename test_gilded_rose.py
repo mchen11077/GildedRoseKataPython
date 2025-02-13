@@ -12,7 +12,7 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
         sulfuras_item = items[0]
         self.assertEqual(80, sulfuras_item.quality)
-        self.assertEqual(4, sulfuras_item.sell_in)
+        self.assertEqual(5, sulfuras_item.sell_in)
         self.assertEqual("Sulfuras", sulfuras_item.name)
 
     # example of test that checks for syntax errors
@@ -27,19 +27,19 @@ class GildedRoseTest(unittest.TestCase):
         items = [Item("Aged Brie", 10, 50)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
-        self.assertEqual(gilded_rose.items[0].quality, 49)
+        self.assertEqual(gilded_rose.items[0].quality, 50)
 
     def test_update_quality_aged_brie(self):
         items = [Item("Aged Brie", 5, 10)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
-        self.assertEqual(9, items[0].quality)
+        self.assertEqual(11, items[0].quality)
 
     def test_backstage_passes_drop_to_zero(self):
         items = [Item("Backstage passes to a TAFKAL80ETC concert", 0, 20)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
-        self.assertEqual(gilded_rose.items[0].quality, 21)
+        self.assertEqual(gilded_rose.items[0].quality, 0)
 
     # syntax error
     def test_add_items(self):
